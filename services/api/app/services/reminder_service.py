@@ -13,7 +13,8 @@ def trigger_reminders() -> dict:
             if svc:
                 user = next((u for u in users if u["id"] == svc["user_id"]), None)
                 if user:
-                    msg = f"Recordatorio: Mañana vence tu pago de {svc['name']} por un monto de ${payment['amount']}."
+                    amt_str = f"${int(payment['amount']):,}".replace(",", ".")
+                    msg = f"Oye {user['name']}, mañana vence tu {svc['name']} por {amt_str}\n\n[ YA PAGUÉ ]\n[ RECORDAR DESPUÉS ]"
                     send_whatsapp_message(user["phone"], msg)
                     sent_count += 1
                     
