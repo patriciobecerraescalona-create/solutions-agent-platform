@@ -1,0 +1,8 @@
+services:
+  api:
+    build:
+      context: ../../services/api
+    container_name: sap_api
+    ports:
+      - "8000:8000"
+    restart: unless-stopped
